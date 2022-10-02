@@ -3,7 +3,7 @@
 
 int main()
 {
-	int fd = open("test", O_RDONLY);
+	int fd = open("tes", O_RDONLY);
 	char *ret = get_next_line(fd);
 	/*rintf("MAIN: ret = %s\n", ret);
 	printf("---------------------------------\n");

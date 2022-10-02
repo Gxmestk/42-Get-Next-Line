@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:30 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/02 15:08:29 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/02 18:02:39 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # endif
 
 # ifndef MAX_FILES
-#  define MAX_FILES 1024
+#  define MAX_FILES 1000
 # endif
 
 typedef struct s_node
