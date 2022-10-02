@@ -34,6 +34,7 @@ int main()
 		printf("gnl (%d) ret = %s\n", i,ret);
 		printf("-----------------------------------\n");
 		i++;
+		free(ret);
 	}
 
 	close(fd);
