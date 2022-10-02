@@ -26,9 +26,11 @@ int main()
 	printf("MAIN: ret = %s\n", ret);
 	printf("---------------------------------\n");*/
 	int i = 0;
+	ret = get_next_line(fd);
 	while(ret != 0)
 	{
 		ret = get_next_line(fd);
+		//printf("%s",ret);
 		printf("gnl (%d) ret = %s\n", i,ret);
 		printf("-----------------------------------\n");
 		i++;

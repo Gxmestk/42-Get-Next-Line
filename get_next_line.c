@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/02 20:12:21 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/02 20:55:56 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ static int	read_line(t_slist *buffer)
 		}
 		else if (ft_strchr(tmp, '\n') || rb < BUFFER_SIZE)
 			stop = 1;
-		
 		slst_split(buffer, tmp);
 		free(tmp);
 	}
@@ -141,7 +140,8 @@ static void	slst_bufcat(char **rstr, t_slist *buffer)
 			(*rstr)[n] = '\0';
 		tmp = walker;
 		walker = walker->next;
-		free(tmp->str);
+		//tmp++;
+		//free(tmp->str);
 		free(tmp);
 	}
 	buffer->first = walker;
