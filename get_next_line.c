@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/02 18:35:24 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/02 18:37:44 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,8 @@ char	*get_next_line(int fd)
 	char			*rstr;
 
 	rstr = NULL;
-	if (fd < 0 || fd >= MAX_FILES)
+	return (NULL);
+	if (fd <= 0 || fd >= MAX_FILES || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer[fd].fd = fd;
 	if (read_line(&buffer[fd]))
