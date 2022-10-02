@@ -4,7 +4,7 @@
 int main()
 {
 	int fd = open("test1", O_RDONLY);
-	char *ret = get_next_line(fd);
+	char *ret = (char *)1;
 	/*printf("MAIN: ret = %s\n", ret);
 	printf("---------------------------------\n");
 	ret = get_next_line(fd);
@@ -27,8 +27,8 @@ int main()
 	printf("---------------------------------\n");*/
 	while(ret != 0)
 	{
-		printf("ret = %s\n", ret);
 		ret = get_next_line(fd);
+		printf("ret = %s\n", ret);
 		printf("-----------------------------------\n");
 	}
 
