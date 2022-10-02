@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/02 19:05:45 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/02 19:06:39 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static int	read_line(t_slist *buffer)
 			return (0);
 		rb = read(buffer->fd, tmp, BUFFER_SIZE);
 		tmp[rb] = '\0';
-		printf("rb = %d\n",rb);
 		if (rb == 0 || rb == -1)
 		{
 			free(tmp);
