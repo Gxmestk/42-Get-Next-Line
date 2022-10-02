@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/02 22:43:20 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/02 22:46:18 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ static void	slst_bufcat(char **rstr, t_slist *buffer)
 		tmp = walker;
 		walker = walker->next;
 		tmp++;
-		//free(tmp->str);
+		free(tmp->str);
 		//free(tmp);
 	}
 	buffer->first = walker;
