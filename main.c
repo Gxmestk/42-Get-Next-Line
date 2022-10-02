@@ -5,9 +5,6 @@ int main()
 {
 	int fd = open("tes", O_RDONLY);
 	char *ret = get_next_line(fd);
-	/*rintf("MAIN: ret = %s\n", ret);
-	printf("---------------------------------\n");
-	ret = get_next_line(fd);
 	printf("MAIN: ret = %s\n", ret);
 	printf("---------------------------------\n");
 	ret = get_next_line(fd);
@@ -24,15 +21,18 @@ int main()
 	printf("---------------------------------\n");
 	ret = get_next_line(fd);
 	printf("MAIN: ret = %s\n", ret);
-	printf("---------------------------------\n");*/
-	while(ret != 0)
+	printf("---------------------------------\n");
+	ret = get_next_line(fd);
+	printf("MAIN: ret = %s\n", ret);
+	printf("---------------------------------\n");
+	/*while(ret != 0)
 	{
 		printf("ret = %s\n", ret);
 		ret = get_next_line(fd);
 		printf("-----------------------------------\n");
 	}
 
-	close(fd);
+	close(fd);*/
 
 	return 0;
 }

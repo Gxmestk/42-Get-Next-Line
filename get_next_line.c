@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/02 18:07:08 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/02 18:35:24 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ static void	slst_bufcat(char **rstr, t_slist *buffer)
 		}
 		else if (walker->str[i] == '\0')
 			(*rstr)[n] = '\0';
-		//printf("rstr = %s\n", *rstr);
 		tmp = walker;
 		walker = walker->next;
 		free(tmp->str);
@@ -146,7 +145,7 @@ char	*get_next_line(int fd)
 	char			*rstr;
 
 	rstr = NULL;
-	if (fd <= 0 || fd >= MAX_FILES || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= MAX_FILES)
 		return (NULL);
 	buffer[fd].fd = fd;
 	if (read_line(&buffer[fd]))
