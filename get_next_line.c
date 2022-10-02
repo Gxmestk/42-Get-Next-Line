@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/02 18:37:44 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/02 18:48:38 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	read_line(t_slist *buffer)
 		{
 			free(tmp);
 			if (buffer->last == NULL)
-				return (0);
+					return (0);
 			return (1);	
 		}
 		else if (ft_strchr(tmp, '\n') || n < BUFFER_SIZE)
@@ -145,8 +145,9 @@ char	*get_next_line(int fd)
 	char			*rstr;
 
 	rstr = NULL;
-	return (NULL);
-	if (fd <= 0 || fd >= MAX_FILES || BUFFER_SIZE <= 0)
+	//return (NULL);
+	printf("fd = %d\n",fd);
+	if (fd < 0 || fd >= MAX_FILES || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer[fd].fd = fd;
 	if (read_line(&buffer[fd]))
