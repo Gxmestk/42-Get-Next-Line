@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/02 19:06:39 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/02 19:22:31 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,12 +145,11 @@ char	*get_next_line(int fd)
 	char			*rstr;
 
 	rstr = NULL;
-	//return (NULL);
-	printf("fd = %d\n",fd);
 	if (fd < 0 || fd >= MAX_FILES || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer[fd].fd = fd;
 	if (read_line(&buffer[fd]))
 		slst_bufcat(&rstr, &buffer[fd]);
+	printf("rstr = %s\n",rstr);
 	return (rstr);
 }
