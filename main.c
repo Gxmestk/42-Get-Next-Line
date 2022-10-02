@@ -30,7 +30,7 @@ int main()
 	while(ret != 0)
 	{
 		printf("%s",ret);
-		//printf("gnl (%d) ret = %s\n", i,ret);
+		printf("gnl (%d) ret = %s\n", i,ret);
 		free(ret);
 		ret = get_next_line(fd);
 		//printf("-----------------------------------\n");
