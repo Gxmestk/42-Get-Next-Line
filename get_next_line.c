@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/02 19:02:10 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/02 19:05:45 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	read_line(t_slist *buffer)
 {
 	int		stop;
 	char	*tmp;
-	int		n;
+	int		rb;
 
 	stop = 0;
 	while (!stop)
@@ -69,17 +69,17 @@ static int	read_line(t_slist *buffer)
 		tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 		if (tmp == NULL)
 			return (0);
-		n = read(buffer->fd, tmp, BUFFER_SIZE);
-		tmp[n] = '\0';
-		printf("n = %d\n",n);
-		if (n == 0)
+		rb = read(buffer->fd, tmp, BUFFER_SIZE);
+		tmp[rb] = '\0';
+		printf("rb = %d\n",rb);
+		if (rb == 0 || rb == -1)
 		{
 			free(tmp);
 			if (buffer->last == NULL)
 					return (0);
 			return (1);	
 		}
-		else if (ft_strchr(tmp, '\n') || n < BUFFER_SIZE)
+		else if (ft_strchr(tmp, '\n') || rb < BUFFER_SIZE)
 			stop = 1;
 		slst_split(buffer, tmp);
 		free(tmp);
@@ -146,7 +146,7 @@ char	*get_next_line(int fd)
 	char			*rstr;
 
 	rstr = NULL;
-	return (NULL);
+	//return (NULL);
 	printf("fd = %d\n",fd);
 	if (fd < 0 || fd >= MAX_FILES || BUFFER_SIZE <= 0)
 		return (NULL);
