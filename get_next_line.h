@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:30 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/02 18:02:39 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/02 22:08:07 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_slist
 {
 	struct s_node	*first;
 	struct s_node	*last;
+	struct s_node	*start;
 	int				fd;
 }	t_slist;
 
