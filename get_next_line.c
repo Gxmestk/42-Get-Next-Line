@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/02 22:56:46 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/02 23:22:59 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,15 @@ static void slst_split(t_slist *buffer, char *tmp)
 
 static int	read_line(t_slist *buffer)
 {
-	int		stop;
-	char	*tmp;
-	int		rb;
+	int			stop;
+	char		*tmp;
+	long long	rb;
 
 	stop = 0;
 
 	while (!stop)
 	{
-		tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+		tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);  
 		if (tmp == NULL)
 			return (0);
 		rb = read(buffer->fd, tmp, BUFFER_SIZE);
@@ -174,6 +174,6 @@ char	*get_next_line(int fd)
 		printf("BUFFER BEFORE OUTPUT = %s\n",walker->str);
 		walker = walker->next;
 	}*/
-	
+
 	return (rstr);
 }
