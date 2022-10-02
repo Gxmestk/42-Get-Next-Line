@@ -29,11 +29,11 @@ int main()
 	ret = get_next_line(fd);
 	while(ret != 0)
 	{
-		//printf("%s",ret);
-		printf("gnl (%d) ret = %s\n", i,ret);
-		//free(ret);
+		printf("%s",ret);
+		//printf("gnl (%d) ret = %s\n", i,ret);
+		free(ret);
 		ret = get_next_line(fd);
-		printf("-----------------------------------\n");
+		//printf("-----------------------------------\n");
 		i++;
 	}
 	close(fd);
