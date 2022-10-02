@@ -16,6 +16,7 @@ int main()
 		//printf("-----------------------------------\n");
 		i++;
 	}
+	free(ret);
 	close(fd);
 	return 0;
 }
