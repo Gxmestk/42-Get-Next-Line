@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 16:33:49 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:37:51 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,17 +171,17 @@ char	*get_next_line(int fd)
 {
 	static t_slist	buffer[MAX_FILES];
 	char			*rstr;
-	long long			opt_size;
+	long long			buf_size;
 	rstr = NULL;
 	if (fd < 0 || fd >= MAX_FILES || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer[fd].fd = fd;
 
-	opt_size = BUFFER_SIZE * 500;
+	buf_size = BUFFER_SIZE;
 	if (BUFFER_SIZE <= 1000)
-		buffer[fd].opt_bufs = opt_size;
+		buffer[fd].opt_bufs = buf_size * 1000;
 	else if (BUFFER_SIZE <= 100000)
-		buffer[fd].opt_bufs = BUFFER_SIZE * 20;
+		buffer[fd].opt_bufs = BUFFER_SIZE * 100;
 	else
 		buffer[fd].opt_bufs = BUFFER_SIZE;
 	if (read_line(&buffer[fd]))
