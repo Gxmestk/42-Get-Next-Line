@@ -16,6 +16,9 @@ int main()
 		//printf("-----------------------------------\n");
 		i++;
 	}
+	printf("%s",ret);
+	free(ret);
+	ret = get_next_line(fd);
 	free(ret);
 	close(fd);
 	return 0;
