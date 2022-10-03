@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 20:33:20 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 20:43:30 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ static int	read_line(t_slist *buffer)
 		tmp2 = tmp;
 		while (1)
 		{
+			if (tmp2 - tmp >= buffer->opt_bufs)
+			{
+				slst_addback(buffer, tmp);
+				break ;
+			}
 			ret_buf = read_buf(buffer, 0, tmp, tmp2);
 			if (ret_buf != -1)
 				return (ret_buf);
