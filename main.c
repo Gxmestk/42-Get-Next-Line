@@ -3,14 +3,14 @@
 
 int main()
 {
-	int fd = open("test", O_RDONLY);
+	int fd = open("test1", O_RDONLY);
 	char *ret = (char *)1;
 	int i = 1;
 	ret = get_next_line(fd);
 	while(ret != 0)
 	{
 		//printf("%s",ret);
-		printf("gnl (%d) ret = %s\n", i,ret);
+		printf("gnl (%d) ret = %s", i,ret);
 		free(ret);
 		printf("-----------------------------------\n");
 		ret = get_next_line(fd);
