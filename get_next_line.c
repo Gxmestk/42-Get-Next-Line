@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 11:49:37 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 11:53:47 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void slst_split(t_slist *buffer, char *tmp)
 	{
 		n = ft_strchr(tmp, '\n');
 		if (n == 0)
-			buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1 + 1);
+			buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1 + 10);
 		else
 			buf = (char *)malloc(sizeof(char) * (n - tmp) + 2);
 		rbuf = buf;
