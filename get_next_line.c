@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 16:44:07 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:46:41 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ char	*get_next_line(int fd)
 {
 	static t_slist	buffer[MAX_FILES];
 	char			*rstr;
-	long long			buf_size;
+	int				buf_size;
 	rstr = NULL;
 	if (fd < 0 || fd >= MAX_FILES || BUFFER_SIZE <= 0)
 		return (NULL);
