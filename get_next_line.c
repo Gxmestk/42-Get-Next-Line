@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 16:40:50 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:41:23 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ char	*get_next_line(int fd)
 
 	buf_size = BUFFER_SIZE;
 	if (buf_size <= 1000)
-		buffer[fd].opt_bufs = buf_size * 300;
+		buffer[fd].opt_bufs = buf_size * 200;
 	else if (buf_size <= 100000)
 		buffer[fd].opt_bufs = buf_size * 100;
 	else
