@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 12:52:24 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 13:21:00 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,25 @@ static void slst_split(t_slist *buffer, char *tmp)
 	char	*buf;
 	char	*n;
 
+	n = ft_strchr(tmp, '\n');
 	while (*tmp != 0)
 	{	
-		n = ft_strchr(tmp, '\n');
+		//printf("n(ld) = %ld\n\n",(long)n);
+		//printf("tmp(c) = %c\n",*tmp);
 		if (n == 0)
-			buf = (char *)malloc(sizeof(char) * BUFFER_SIZE * 2 + 2);
+			buf = (char *)malloc(sizeof(char) * buffer->opt_bufs + 2);
 		else
 			buf = (char *)malloc(sizeof(char) * (n - tmp) + 2);
 		if (buf == NULL)
 			return ;
 		rbuf = buf;
 		while (tmp <= n || (*tmp != '\0' && n == 0))
+		{
+			//printf("tmp(ld) = %ld\ntmp(c) = %c\n",(long)tmp,*tmp);
 			*buf++ = *tmp++;
+		}
+		//printf("tmp(c) = %c\ntmp(ld) = %ld\n",*tmp,(long)tmp);
+			
 		*buf = '\0';
 		slst_addback(buffer, rbuf);
 		n = ft_strchr(tmp, '\n');
@@ -62,13 +69,13 @@ static int	read_line(t_slist *buffer)
 
 	while (1)
 	{
-		tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE * 2 + 1);
+		tmp = (char *)malloc(sizeof(char) * buffer->opt_bufs + 1);
 		if (tmp == NULL)
 				return (0);
 		tmp2 = tmp;
 		while (1)
 		{
-			if (tmp2 - tmp >= BUFFER_SIZE * 2)
+			if (tmp2 - tmp >= buffer->opt_bufs)
 			{
 				slst_addback(buffer, tmp);
 				break ;
@@ -160,6 +167,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || fd >= MAX_FILES || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer[fd].fd = fd;
+	buffer[fd].opt_bufs = BUFFER_SIZE * 10;
 	if (read_line(&buffer[fd]))
 		slst_bufcat(&rstr, &buffer[fd]);
 	return (rstr);
