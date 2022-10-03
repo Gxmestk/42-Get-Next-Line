@@ -5,20 +5,22 @@ int main()
 {
 	int fd = open("test", O_RDONLY);
 	char *ret = (char *)1;
-	int i = 0;
+	int i = 1;
 	ret = get_next_line(fd);
 	while(ret != 0)
 	{
-		printf("%s",ret);
-		//printf("gnl (%d) ret = %s\n", i,ret);
+		//printf("%s",ret);
+		printf("gnl (%d) ret = %s\n", i,ret);
 		free(ret);
+		printf("-----------------------------------\n");
 		ret = get_next_line(fd);
-		//printf("-----------------------------------\n");
 		i++;
 	}
-	printf("%s",ret);
+	/*free(ret);
+	printf("gnl (%d) ret = %s\n", i,ret);
 	free(ret);
 	ret = get_next_line(fd);
+	printf("-----------------------------------\n");*/
 	free(ret);
 	close(fd);
 	return 0;

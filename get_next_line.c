@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 13:32:56 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:36:21 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	slst_addback(t_slist *lst, char *str)
 {
 	t_node	*new;
 
+	printf("adding = %s\n",str);
 	new = (t_node *)malloc(sizeof(t_node));
 	if (new == NULL)
 		return ;
@@ -54,7 +55,7 @@ static void slst_split(t_slist *buffer, char *tmp)
 			*buf++ = *tmp++;
 		}
 		//printf("tmp(c) = %c\ntmp(ld) = %ld\n",*tmp,(long)tmp);
-			
+
 		*buf = '\0';
 		slst_addback(buffer, rbuf);
 		n = ft_strchr(tmp, '\n');
@@ -85,12 +86,15 @@ static int	read_line(t_slist *buffer)
 				tmp2[rb] = '\0';
 			if (rb == 0 || rb == -1)
 			{
+				/*printf("rb = %lld\n",rb);
+				printf("buffer->first = %p\n",buffer->first);
+				printf("buffer->first->str = %s\n",buffer->first->str);*/
 				if (buffer->first == NULL && tmp[0] == '\0')
 				{
 					free(tmp);
 					return (0);
 				}
-				slst_addback(buffer, tmp);
+				//slst_addback(buffer, tmp);
 				//slst_split(buffer, tmp);
 				//free(tmp);
 				return (1);
@@ -170,5 +174,6 @@ char	*get_next_line(int fd)
 	buffer[fd].opt_bufs = BUFFER_SIZE * 10;
 	if (read_line(&buffer[fd]))
 		slst_bufcat(&rstr, &buffer[fd]);
+	//printf("rstr = %s\n",rstr);
 	return (rstr);
 }
