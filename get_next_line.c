@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 11:04:02 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 11:06:08 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ static int	read_line(t_slist *buffer)
 			}
 			tmp2 += rb;
 		}
-		return (1);
 	}
 }
 
