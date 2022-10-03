@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:30 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 15:40:05 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:57:52 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ typedef struct s_slist
 
 char	*ft_strchr(const char *str, int c);
 char	*get_next_line(int fd);
+void	slst_addback(t_slist *lst, char *str);
+void	slst_split(t_slist *buffer, char *tmp);
 
 #endif
