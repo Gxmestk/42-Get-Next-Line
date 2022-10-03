@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 11:56:10 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 11:59:30 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ static int	read_line(t_slist *buffer)
 					free(tmp);
 					return (0);
 				}
-				//lst_split(buffer, tmp);
 				slst_addback(buffer, tmp);
-				free(tmp);
+				//slst_split(buffer, tmp);
+				//free(tmp);
 				return (1);
 			}
 			else if (ft_strchr(tmp2, '\n') || rb < BUFFER_SIZE)
