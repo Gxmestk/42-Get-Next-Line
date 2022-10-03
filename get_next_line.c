@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 15:25:24 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:37:50 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,15 @@ static int	read_line(t_slist *buffer)
 				/*printf("rb = %lld\n",rb);
 				printf("buffer->first = %p\n",buffer->first);
 				printf("buffer->first->str = %s\n",buffer->first->str);*/
-				if (buffer->first == NULL && tmp[0] == '\0')
+				if (buffer->first == NULL && *tmp == '\0')
 				{
 					free(tmp);
 					return (0);
 				}
 				if (*tmp != 0)
 					slst_addback(buffer, tmp);
+				else
+					free(tmp);
 				//slst_split(buffer, tmp);
 				//free(tmp);
 				//free(tmp);
