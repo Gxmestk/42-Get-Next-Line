@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 12:07:49 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 12:09:27 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ static int	read_line(t_slist *buffer)
 
 	while (1)
 	{
-		tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE * 20 + 1);
+		tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE * 2 + 1);
 		if (tmp == NULL)
 				return (0);
 		tmp2 = tmp;
 		while (1)
 		{
-			if (tmp2 - tmp >= BUFFER_SIZE * 20)
+			if (tmp2 - tmp >= BUFFER_SIZE * 2)
 			{
 				slst_addback(buffer, tmp);
 				break ;
