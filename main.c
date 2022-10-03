@@ -3,7 +3,7 @@
 
 int main()
 {
-	int fd = open("test1", O_RDONLY);
+	int fd = open("test", O_RDONLY);
 	char *ret = (char *)1;
 	int i = 0;
 	ret = get_next_line(fd);
