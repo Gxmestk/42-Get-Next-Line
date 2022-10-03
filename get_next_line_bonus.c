@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:33 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/02 23:28:34 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 11:31:20 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ static void slst_split(t_slist *buffer, char *tmp)
 	char	*rbuf;
 	char	*buf;
 	char	*n;
-	//int		i;
 
-	//i = 0;
 	while (*tmp != 0)
 	{
 		n = ft_strchr(tmp, '\n');
@@ -52,46 +50,51 @@ static void slst_split(t_slist *buffer, char *tmp)
 
 		slst_addback(buffer, rbuf);
 		n = ft_strchr(tmp, '\n');
-
-		/*printf("-----%d-----\n",i);
-			t_node *walkers = buffer->first;
-			while (walkers != NULL)
-			{
-				printf("BUFFER CHECK = %s\n",walkers->str);
-				walkers = walkers->next;
-			}
-		i++;*/
 	}
 }
 
 static int	read_line(t_slist *buffer)
 {
-	int			stop;
 	char		*tmp;
 	long long	rb;
+	char		*tmp2;
 
-	stop = 0;
-
-	while (!stop)
+	while (1)
 	{
-		tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);  
+		tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE * 20 + 1);
 		if (tmp == NULL)
-			return (0);
-		rb = read(buffer->fd, tmp, BUFFER_SIZE);
-		tmp[rb] = '\0';
-		if (rb == 0 || rb == -1)
+				return (0);
+		tmp2 = tmp;
+		while (1)
 		{
-			free(tmp);
-			if (buffer->first == NULL)
+			if (tmp2 - tmp >= BUFFER_SIZE * 20)
+			{
+				slst_addback(buffer, tmp);
+				break ;
+			}
+			rb = read(buffer->fd, tmp2, BUFFER_SIZE);
+			if (rb != -1)
+				tmp2[rb] = '\0';
+			if (rb == 0 || rb == -1)
+			{
+				if (buffer->first == NULL && tmp[0] == '\0')
+				{
+					free(tmp);
 					return (0);
-			return (1);	
-		}
-		else if (ft_strchr(tmp, '\n') || rb < BUFFER_SIZE)
-			stop = 1;
-		slst_split(buffer, tmp);
-		free(tmp);
+				}
+				slst_split(buffer, tmp);
+				free(tmp);
+				return (1);
+			}
+			else if (ft_strchr(tmp2, '\n') || rb < BUFFER_SIZE)
+			{
+				slst_split(buffer, tmp);
+				free(tmp);
+				return (1);
+			}
+			tmp2 += rb;
+		}	
 	}
-	return (1);
 }
 
 static void	slst_bufcat(char **rstr, t_slist *buffer)
@@ -140,12 +143,10 @@ static void	slst_bufcat(char **rstr, t_slist *buffer)
 			(*rstr)[n] = '\0';
 		tmp = walker;
 		walker = walker->next;
-		//tmp++;
 		free(tmp->str);
 		free(tmp);
 	}
 	buffer->first = walker;
-	//buffer->last = walker;
 }
 
 char	*get_next_line(int fd)
@@ -157,23 +158,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || fd >= MAX_FILES || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer[fd].fd = fd;
-
-	/*t_node *walker = buffer[fd].first;
-	while (walker != NULL)
-	{
-		printf("BUFFER WHILE CALLING = %s\n",walker->str);
-		walker = walker->next;
-	}*/
-
 	if (read_line(&buffer[fd]))
 		slst_bufcat(&rstr, &buffer[fd]);
-
-	/*walker = buffer[fd].first;
-	while (walker != NULL)
-	{
-		printf("BUFFER BEFORE OUTPUT = %s\n",walker->str);
-		walker = walker->next;
-	}*/
-
 	return (rstr);
 }
