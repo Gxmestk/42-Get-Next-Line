@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 14:36:21 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:38:58 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	slst_addback(t_slist *lst, char *str)
 {
 	t_node	*new;
 
-	printf("adding = %s\n",str);
+	//printf("adding = %s\n",str);
 	new = (t_node *)malloc(sizeof(t_node));
 	if (new == NULL)
 		return ;
@@ -97,6 +97,7 @@ static int	read_line(t_slist *buffer)
 				//slst_addback(buffer, tmp);
 				//slst_split(buffer, tmp);
 				//free(tmp);
+				free(tmp);
 				return (1);
 			}
 			else if (ft_strchr(tmp2, '\n')) //|| rb < BUFFER_SIZE
