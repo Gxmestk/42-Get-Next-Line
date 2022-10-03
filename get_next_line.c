@@ -6,61 +6,14 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 20:56:56 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 21:00:24 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/*static int	read_line(t_slist *buffer)
-{
-	char		*tmp;
-	long long	rb;
-	char		*tmp2;
-
-	while (1)
-	{
-		tmp = (char *)malloc(sizeof(char) * buffer->opt_bufs + 1);
-		if (tmp == NULL)
-			return (0);
-		tmp2 = tmp;
-		while (1)
-		{
-			if (tmp2 - tmp >= buffer->opt_bufs)
-			{
-				slst_addback(buffer, tmp);
-				break ;
-			}
-			rb = read(buffer->fd, tmp2, BUFFER_SIZE);
-			if (rb != -1)
-				tmp2[rb] = '\0';
-			if (rb == 0 || rb == -1)
-			{
-				if (buffer->first == NULL && *tmp == '\0')
-				{
-					free(tmp);
-					return (0);
-				}
-				if (*tmp != 0)
-					slst_addback(buffer, tmp);
-				else
-					free(tmp);
-				return (1);
-			}
-			else if (ft_strchr(tmp2, '\n'))
-			{
-				slst_split(buffer, tmp);
-				free(tmp);
-				return (1);
-			}
-			tmp2 += rb;
-		}
-	}
-}*/
-
 static int	read_buf(t_slist *buffer, long long rb, char *tmp, char **tmp2)
 {
-	
 	rb = read(buffer->fd, *tmp2, BUFFER_SIZE);
 	if (rb != -1)
 		(*tmp2)[rb] = '\0';

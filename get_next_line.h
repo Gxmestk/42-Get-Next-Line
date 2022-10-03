@@ -6,14 +6,13 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:30 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 20:34:17 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 20:59:07 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/types.h>
