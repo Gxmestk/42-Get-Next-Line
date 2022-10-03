@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:31 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 17:54:43 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 20:33:58 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,54 @@ void	slst_split(t_slist *buffer, char *tmp)
 		slst_addback(buffer, rbuf);
 		n = ft_strchr(tmp, '\n');
 	}
+}
+
+void	slst_malc(t_slist *buffer, int i, int n, char **rstr)
+{
+	t_node	*walker;
+
+	walker = buffer->first;
+	while (walker != NULL)
+	{
+		i = 0;
+		while (walker->str[i] != '\n' && walker->str[i] != '\0')
+		{
+			i++;
+			n++;
+		}
+		walker = walker->next;
+	}
+	*rstr = (char *)malloc(sizeof(char) * n + 2);
+	if (*rstr == NULL)
+		return ;
+	(*rstr)[n] = '\0';
+}
+
+void	slst_bufcat(char **rstr, t_slist *buffer)
+{
+	t_slst_bufcat_packet	p;
+
+	slst_malc(buffer, 0, 0, rstr);
+	p.n = 0;
+	p.walker = buffer->first;
+	p.stop = 0;
+	while (p.walker != NULL && !p.stop)
+	{
+		p.i = 0;
+		while (p.walker->str[p.i] != '\n' && p.walker->str[p.i] != '\0')
+			(*rstr)[p.n++] = p.walker->str[p.i++];
+		if (p.walker->str[p.i] == '\n')
+		{
+			p.stop = 1;
+			(*rstr)[p.n] = '\n';
+			(*rstr)[++p.n] = '\0';
+		}
+		else if (p.walker->str[p.i] == '\0')
+			(*rstr)[p.n] = '\0';
+		p.tmp = p.walker;
+		p.walker = p.walker->next;
+		free(p.tmp->str);
+		free(p.tmp);
+	}
+	buffer->first = p.walker;
 }

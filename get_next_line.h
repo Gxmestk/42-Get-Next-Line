@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:30 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 17:57:52 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 20:34:17 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,20 @@ typedef struct s_slist
 	int				fd;
 }	t_slist;
 
+typedef struct s_slst_bufcat_packet
+{
+	t_node	*walker;
+	t_node	*tmp;
+	int		n;
+	int		i;
+	int		stop;
+}	t_slst_bufcat_packet;
+
 char	*ft_strchr(const char *str, int c);
-char	*get_next_line(int fd);
 void	slst_addback(t_slist *lst, char *str);
 void	slst_split(t_slist *buffer, char *tmp);
+void	slst_malc(t_slist *buffer, int i, int n, char **rstr);
+void	slst_bufcat(char **rstr, t_slist *buffer);
+char	*get_next_line(int fd);
 
 #endif
