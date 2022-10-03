@@ -3,7 +3,7 @@
 
 int main()
 {
-	int fd = open("test1", O_RDONLY);
+	int fd = open("test", O_RDONLY);
 	char *ret = (char *)1;
 	int i = 1;
 	ret = get_next_line(fd);
@@ -12,7 +12,7 @@ int main()
 		//printf("%s",ret);
 		printf("gnl (%d) ret = %s", i,ret);
 		free(ret);
-		printf("-----------------------------------\n");
+		printf("\n-----------------------------------\n");
 		ret = get_next_line(fd);
 		i++;
 	}
