@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 11:53:47 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 11:55:19 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void slst_split(t_slist *buffer, char *tmp)
 	{
 		n = ft_strchr(tmp, '\n');
 		if (n == 0)
-			buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1 + 10);
+			buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 		else
 			buf = (char *)malloc(sizeof(char) * (n - tmp) + 2);
 		rbuf = buf;
@@ -82,7 +82,8 @@ static int	read_line(t_slist *buffer)
 					free(tmp);
 					return (0);
 				}
-				slst_split(buffer, tmp);
+				//lst_split(buffer, tmp);
+				slst_addback(buffer, tmp);
 				free(tmp);
 				return (1);
 			}
