@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:27 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 00:51:24 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 11:04:02 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,32 +55,48 @@ static void slst_split(t_slist *buffer, char *tmp)
 
 static int	read_line(t_slist *buffer)
 {
-	int			stop;
 	char		*tmp;
 	long long	rb;
 	char		*tmp2;
 
-	stop = 0;
-
-	tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE * 100 + 1);
-	if (tmp == NULL)
-			return (0);
-	tmp2 = tmp;
-	while (!stop)
+	while (1)
 	{
-		rb = read(buffer->fd, tmp2, BUFFER_SIZE);
-		tmp2[rb] = '\0';
-		if (rb == 0 || rb == -1 || tmp2 - tmp == BUFFER_SIZE * 100)
+		tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE * 100 + 1);
+		if (tmp == NULL)
+				return (0);
+		tmp2 = tmp;
+		while (!1)
 		{
-			slst_split(buffer, tmp);
-			free(tmp);
-			if (buffer->first == NULL)
+			if (tmp2 - tmp == BUFFER_SIZE * 100)
+			{
+				slst_addback(buffer, tmp);
+				break ;
+			}
+			rb = read(buffer->fd, tmp2, BUFFER_SIZE);
+			if (rb != -1)
+				tmp2[rb] = '\0';
+			if (rb == 0 || rb == -1)
+			{
+				free(tmp);
+				if (buffer->first == NULL && tmp[0] == '\0')
+				{
+					free(tmp);
 					return (0);
-			return (1);
+				}
+				slst_split(buffer, tmp);
+				free(tmp);
+				return (1);
+			}
+			else if (ft_strchr(tmp2, '\n') || rb < BUFFER_SIZE)
+			{
+				slst_split(buffer, tmp);
+				free(tmp);
+				return (1);
+			}
+			tmp2 += rb;
 		}
-		tmp2 += rb;
+		return (1);
 	}
-	return (1);
 }
 
 static void	slst_bufcat(char **rstr, t_slist *buffer)
