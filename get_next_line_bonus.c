@@ -6,7 +6,7 @@
 /*   By: tkhemniw <gt.khemniwat@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:48:33 by tkhemniw          #+#    #+#             */
-/*   Updated: 2022/10/03 11:31:20 by tkhemniw         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:40:03 by tkhemniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	slst_addback(t_slist *lst, char *str)
 {
 	t_node	*new;
 
+	//printf("adding = %s\n",str);
 	new = (t_node *)malloc(sizeof(t_node));
 	if (new == NULL)
 		return ;
@@ -36,18 +37,26 @@ static void slst_split(t_slist *buffer, char *tmp)
 	char	*buf;
 	char	*n;
 
+	n = ft_strchr(tmp, '\n');
 	while (*tmp != 0)
-	{
-		n = ft_strchr(tmp, '\n');
+	{	
+		//printf("n(ld) = %ld\n\n",(long)n);
+		//printf("tmp(c) = %c\n",*tmp);
 		if (n == 0)
-			buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+			buf = (char *)malloc(sizeof(char) * buffer->opt_bufs + 2);
 		else
 			buf = (char *)malloc(sizeof(char) * (n - tmp) + 2);
+		if (buf == NULL)
+			return ;
 		rbuf = buf;
 		while (tmp <= n || (*tmp != '\0' && n == 0))
+		{
+			//printf("tmp(ld) = %ld\ntmp(c) = %c\n",(long)tmp,*tmp);
 			*buf++ = *tmp++;
-		*buf = '\0';
+		}
+		//printf("tmp(c) = %c\ntmp(ld) = %ld\n",*tmp,(long)tmp);
 
+		*buf = '\0';
 		slst_addback(buffer, rbuf);
 		n = ft_strchr(tmp, '\n');
 	}
@@ -61,13 +70,13 @@ static int	read_line(t_slist *buffer)
 
 	while (1)
 	{
-		tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE * 20 + 1);
+		tmp = (char *)malloc(sizeof(char) * buffer->opt_bufs + 1);
 		if (tmp == NULL)
 				return (0);
 		tmp2 = tmp;
 		while (1)
 		{
-			if (tmp2 - tmp >= BUFFER_SIZE * 20)
+			if (tmp2 - tmp >= buffer->opt_bufs)
 			{
 				slst_addback(buffer, tmp);
 				break ;
@@ -77,17 +86,26 @@ static int	read_line(t_slist *buffer)
 				tmp2[rb] = '\0';
 			if (rb == 0 || rb == -1)
 			{
-				if (buffer->first == NULL && tmp[0] == '\0')
+				/*printf("rb = %lld\n",rb);
+				printf("buffer->first = %p\n",buffer->first);
+				printf("buffer->first->str = %s\n",buffer->first->str);*/
+				if (buffer->first == NULL && *tmp == '\0')
 				{
 					free(tmp);
 					return (0);
 				}
-				slst_split(buffer, tmp);
-				free(tmp);
+				if (*tmp != 0)
+					slst_addback(buffer, tmp);
+				else
+					free(tmp);
+				//slst_split(buffer, tmp);
+				//free(tmp);
+				//free(tmp);
 				return (1);
 			}
-			else if (ft_strchr(tmp2, '\n') || rb < BUFFER_SIZE)
+			else if (ft_strchr(tmp2, '\n')) //|| rb < BUFFER_SIZE
 			{
+				//printf("bf split = %s",tmp);
 				slst_split(buffer, tmp);
 				free(tmp);
 				return (1);
@@ -158,7 +176,9 @@ char	*get_next_line(int fd)
 	if (fd < 0 || fd >= MAX_FILES || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer[fd].fd = fd;
+	buffer[fd].opt_bufs = BUFFER_SIZE * 10;
 	if (read_line(&buffer[fd]))
 		slst_bufcat(&rstr, &buffer[fd]);
+	//printf("rstr = %s\n",rstr);
 	return (rstr);
 }
